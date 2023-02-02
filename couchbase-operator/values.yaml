@@ -1,4 +1,4 @@
 couchbase-operator:
   install:
+    couchbaseOperator: false
     syncGateway: true
-    
