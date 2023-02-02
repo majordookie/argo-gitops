@@ -6,5 +6,6 @@ spec:
     targetRevision: HEAD
 
 argocd:
-  ingress:
-    enabled: true
+  server:
+    ingress:
+      enabled: true
