@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: couchbase-operator
+spec:
+  destination:
+    name: ''
+    namespace: couchbase-operator
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: ''
+    repoURL: 'https://couchbase-partners.github.io/helm-charts/'
+    targetRevision: 2.40.1
+    chart: couchbase-operator
+  project: default
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
