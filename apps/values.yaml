@@ -4,3 +4,7 @@ spec:
   source:
     repoURL: https://argoproj.github.io/argo-helm
     targetRevision: HEAD
+
+argocd:
+  ingress:
+    enabled: true
