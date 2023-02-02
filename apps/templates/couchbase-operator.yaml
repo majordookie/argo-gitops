@@ -9,12 +9,13 @@ spec:
   destination:
     name: ''
     namespace: couchbase-operator
-    server: 'https://kubernetes.default.svc'
+    server: {{ .Values.spec.destination.server }}
   source:
-    path: 'argocd'
     repoURL: 'git@github.com:majordookie/argo-gitops.git'
-    targetRevision: 2.40.1
-    chart: couchbase-operator
+    path: couchbase-operator
+    helm:
+      valueFiles:
+        - values.yaml
   project: default
   syncPolicy:
     syncOptions:
