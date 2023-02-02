@@ -9,3 +9,6 @@ argocd:
   server:
     ingress:
       enabled: true
+couchbase-operator:
+  install:
+    syncGateway: true
