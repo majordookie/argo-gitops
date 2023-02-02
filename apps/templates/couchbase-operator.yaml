@@ -11,8 +11,8 @@ spec:
     namespace: couchbase-operator
     server: 'https://kubernetes.default.svc'
   source:
-    path: ''
-    repoURL: 'https://couchbase-partners.github.io/helm-charts/'
+    path: 'argocd'
+    repoURL: 'git@github.com:majordookie/argo-gitops.git'
     targetRevision: 2.40.1
     chart: couchbase-operator
   project: default
