@@ -1,0 +1,4 @@
+couchbase-operator:
+  install:
+    syncGateway: true
+    
