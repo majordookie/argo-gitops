@@ -1,2 +1,4 @@
 #https://github.com/couchbase-partners/helm-charts/blob/master/charts/couchbase-operator/values.yaml
 couchbase-operator:
+  cluster:
+    name: felipe
