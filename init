@@ -1,9 +1,24 @@
 #!/bin/zsh
 kind create cluster --config kind-config.yaml
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
-helm repo add argo https://argoproj.github.io/argo-helm
 kubectl create namespace argocd
-helm install --namespace argocd argo argo/argo-cd
+cat >argocd/templates/credentials.yaml <<EOF
+apiVersion: v1
+kind: Secret
+metadata:
+  name: git-ssh
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+stringData:
+  url: git@github.com:majordookie/argo-gitops.git
+  sshPrivateKey: |
+$(while IFS= read -r line; do echo -e "    $line"; done < ~/.ssh/id_rsa)
+  insecure: "true" # Do not perform a host key check for the server. Defaults to "false"
+  enableLfs: "true" # Enable git-lfs for this repository. Defaults to "false"
+EOF
+helm install --namespace argocd argo ./argocd
 sleep 30
-kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; 
-kubectl port-forward svc/argo-argocd-server -n argocd 8080:443
+echo "waiting 30 seconds until argocd is up"
+echo "argocd password is..."
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+kubectl apply -f applications.yaml
