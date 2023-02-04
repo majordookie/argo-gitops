@@ -10,9 +10,6 @@ spec:
   source:
     repoURL: 'git@github.com:majordookie/argo-gitops.git'
     path: ingress-nginx
-    helm:
-      valueFiles:
-        - values.yaml
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: ingress-nginx
