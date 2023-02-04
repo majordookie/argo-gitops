@@ -1,0 +1,5 @@
+argo-cd:
+  server:
+    ingress:
+      enabled: true
+      ingressClassName: ingress-nginx
