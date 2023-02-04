@@ -21,7 +21,7 @@ spec:
             hosts:
               - argocd.local
             annotations:
-              # kubernetes.io/ingress.class: ambassador ### For some ingress controllers required
+              kubernetes.io/ingress.class: ingress-nginx
         dex:
           enabled: "false"
   destination:
